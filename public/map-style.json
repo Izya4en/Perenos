@@ -1,0 +1,72 @@
+{
+  "version": 8,
+  "name": "Dark-Fixed",
+  "sources": {
+    "v3": {
+      "type": "vector",
+      "tiles": ["http://localhost:8081/data/v3/{z}/{x}/{y}.pbf"],
+      "minzoom": 0,
+      "maxzoom": 14
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": { "background-color": "#0f172a" }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "v3",
+      "source-layer": "water",
+      "paint": { "fill-color": "#1e293b" }
+    },
+    {
+      "id": "road_major",
+      "type": "line",
+      "source": "v3",
+      "source-layer": "transportation",
+      "filter": ["all", ["in", "class", "motorway", "trunk", "primary"]],
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "paint": {
+        "line-color": "#475569",
+        "line-width": { "base": 1.4, "stops": [[6, 0.5], [20, 20]] }
+      }
+    },
+    {
+      "id": "road_minor",
+      "type": "line",
+      "source": "v3",
+      "source-layer": "transportation",
+      "filter": ["all", ["in", "class", "secondary", "tertiary", "minor", "service", "track"]],
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "paint": {
+        "line-color": "#334155",
+        "line-width": { "base": 1, "stops": [[10, 0.5], [20, 5]] }
+      }
+    },
+    {
+      "id": "building",
+      "type": "fill",
+      "source": "v3",
+      "source-layer": "building",
+      "paint": { "fill-color": "#1e293b", "fill-opacity": 0.4 }
+    },
+    {
+      "id": "place_label",
+      "type": "symbol",
+      "source": "v3",
+      "source-layer": "place",
+      "layout": {
+        "text-field": "{name:latin}",
+        "text-size": 12
+      },
+      "paint": {
+        "text-color": "#94a3b8",
+        "text-halo-color": "#0f172a",
+        "text-halo-width": 2
+      }
+    }
+  ]
+}
