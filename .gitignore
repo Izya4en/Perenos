@@ -1,0 +1,4 @@
+.env
+*.csvgeocash-app
+traffic_data.csv
+.env
